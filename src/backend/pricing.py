@@ -1,43 +1,19 @@
-from enum import Enum
 from typing import Dict
 
-class PlanTier(Enum):
-    FREE = 'free'
-    PRO = 'pro'
-    ENTERPRISE = 'enterprise'
-
-class PricingConfig:
-    PLANS = {
-        PlanTier.FREE: {
-            'price': 0,
-            'limits': {
-                'posts_per_day': 5,
-                'social_accounts': 2,
-                'analytics': 'basic',
-            }
+def get_plan_limits(tier: str) -> Dict:
+    """Get limits for a specific pricing tier"""
+    limits = {
+        'free': {
+            'posts_per_day': 5,
+            'social_accounts': 2
         },
-        PlanTier.PRO: {
-            'price': 49,
-            'limits': {
-                'posts_per_day': 50,
-                'social_accounts': 10,
-                'analytics': 'advanced',
-            }
+        'pro': {
+            'posts_per_day': 50,
+            'social_accounts': 10
         },
-        PlanTier.ENTERPRISE: {
-            'price': 100,
-            'limits': {
-                'posts_per_day': float('inf'),  # unlimited
-                'social_accounts': float('inf'),  # unlimited
-                'analytics': 'full',
-            }
+        'enterprise': {
+            'posts_per_day': float('inf'),
+            'social_accounts': float('inf')
         }
     }
-    
-    @staticmethod
-    def get_plan_limits(plan: PlanTier) -> Dict:
-        return PricingConfig.PLANS[plan]['limits']
-    
-    @staticmethod
-    def get_plan_price(plan: PlanTier) -> float:
-        return PricingConfig.PLANS[plan]['price']
+    return limits.get(tier, limits['free'])
