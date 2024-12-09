@@ -1,14 +1,11 @@
-from datetime import datetime, timedelta
-from typing import Dict, List
-import pandas as pd
+from typing import Dict
+from datetime import datetime
 
 class AnalyticsTracker:
     def __init__(self, user_id: str):
         self.user_id = user_id
-        
-    def track_post_performance(self, post_id: str, platform: str, metrics: Dict):
-        """Track engagement metrics for a post"""
-        # In production, store in database
+    
+    def track_post_performance(self, post_id: str, platform: str, metrics: Dict) -> Dict:
         return {
             'post_id': post_id,
             'platform': platform,
@@ -20,17 +17,9 @@ class AnalyticsTracker:
         }
     
     def get_engagement_rate(self, metrics: Dict) -> float:
-        """Calculate engagement rate"""
-        total_engagement = metrics['likes'] + metrics['shares'] + metrics['comments']
-        return (total_engagement / metrics['reach']) * 100 if metrics['reach'] > 0 else 0
-    
-    def analyze_best_times(self, posts: List[Dict]) -> Dict:
-        """Analyze best posting times based on engagement"""
-        df = pd.DataFrame(posts)
-        df['hour'] = pd.to_datetime(df['timestamp']).dt.hour
-        
-        engagement_by_hour = df.groupby('hour')['engagement_rate'].mean()
-        return {
-            'best_times': engagement_by_hour.nlargest(3).index.tolist(),
-            'avg_engagement': engagement_by_hour.to_dict()
-        }
+        total_engagement = (
+            metrics.get('likes', 0) + 
+            metrics.get('shares', 0) + 
+            metrics.get('comments', 0)
+        )
+        return (total_engagement / metrics['reach']) * 100 if metrics.get('reach', 0) > 0 else 0
