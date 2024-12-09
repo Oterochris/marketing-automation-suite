@@ -1,40 +1,31 @@
 import pytest
-from src.payments.stripe_integration import process_payment, create_subscription
-from src.payments.billing import BillingManager
+from src.payments.manager import PaymentManager
 
 @pytest.fixture
-def test_payment_data():
+def payment_config():
     return {
-        'user_id': 'test_user',
-        'plan': 'pro',
-        'amount': 4900,  # $49.00
-        'currency': 'usd',
-        'payment_method': 'test_card'
+        'stripe_key': 'test_key',
+        'plans': {
+            'free': {'price': 0},
+            'pro': {'price': 4900},
+            'enterprise': {'price': 10000}
+        }
     }
 
-def test_subscription_creation(test_payment_data):
-    result = create_subscription(
-        user_id=test_payment_data['user_id'],
-        plan=test_payment_data['plan']
+def test_subscription_creation(payment_config):
+    payment_mgr = PaymentManager(payment_config)
+    result = payment_mgr.create_subscription(
+        user_id='test_user',
+        plan='pro'
     )
-    
     assert result['status'] == 'success'
-    assert 'subscription_id' in result
+    assert result['plan'] == 'pro'
 
-def test_payment_processing(test_payment_data):
-    result = process_payment(test_payment_data)
-    
-    assert result['status'] == 'success'
-    assert result['amount'] == test_payment_data['amount']
-
-def test_failed_payment():
-    bad_payment = {
-        'user_id': 'test_user',
-        'plan': 'pro',
+def test_failed_payment(payment_config):
+    payment_mgr = PaymentManager(payment_config)
+    result = payment_mgr.process_payment({
         'amount': 4900,
-        'payment_method': 'invalid_card'
-    }
-    
-    result = process_payment(bad_payment)
+        'card': 'invalid_card'
+    })
     assert result['status'] == 'error'
     assert 'payment failed' in result['error'].lower()

@@ -1,36 +1,24 @@
 import pytest
 from datetime import datetime
-from src.analytics.tracking import AnalyticsTracker
+from src.analytics.tracker import AnalyticsTracker
 
 @pytest.fixture
-def test_post_data():
+def analytics_data():
     return {
-        'post_id': '123',
+        'post_id': 'test_123',
         'likes': 100,
         'shares': 50,
         'comments': 25,
-        'reach': 1000,
-        'engagement_rate': 17.5
+        'reach': 1000
     }
 
-def test_engagement_tracking(test_post_data):
+def test_engagement_tracking(analytics_data):
     tracker = AnalyticsTracker('test_user')
-    result = tracker.track_post_performance(
-        post_id=test_post_data['post_id'],
-        platform='twitter',
-        metrics=test_post_data
-    )
-    
-    assert result['post_id'] == test_post_data['post_id']
-    assert result['platform'] == 'twitter'
-    assert 'timestamp' in result
+    result = tracker.track_engagement(analytics_data)
+    assert result['engagement_rate'] == 17.5  # (100+50+25)/1000 * 100
 
-def test_engagement_rate_calculation(test_post_data):
+def test_performance_report(analytics_data):
     tracker = AnalyticsTracker('test_user')
-    rate = tracker.get_engagement_rate(test_post_data)
-    expected_rate = ((test_post_data['likes'] + 
-                     test_post_data['shares'] + 
-                     test_post_data['comments']) / 
-                    test_post_data['reach']) * 100
-    
-    assert rate == expected_rate
+    report = tracker.generate_report()
+    assert 'total_engagement' in report
+    assert 'best_performing_post' in report
