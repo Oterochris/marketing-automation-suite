@@ -5,7 +5,7 @@ setup(
     version='0.1.0',
     packages=find_packages(),
     install_requires=[
-        'pytest',
-        'python-dotenv',
+        'pytest>=7.0.0',
+        'python-dotenv>=0.19.0',
     ]
 )

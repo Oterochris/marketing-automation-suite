@@ -17,11 +17,3 @@ class SocialMediaManager:
                 'post_id': '123456789'
             }
         }
-    
-    def schedule_post(self, content: str, schedule_time: str, platforms: List[str] = None) -> Dict:
-        return {
-            'twitter': {
-                'status': 'scheduled',
-                'schedule_time': schedule_time
-            }
-        }
