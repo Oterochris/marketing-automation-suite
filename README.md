@@ -1,3 +1,5 @@
+# Marketing Automation Suite 🚀
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
@@ -24,13 +26,6 @@ An enterprise-grade marketing automation platform that helps businesses streamli
   - Smart scheduling based on timezone
   - Campaign performance tracking
 
-### Premium Features
-- Advanced analytics dashboard
-- Custom integration support
-- Priority support
-- White-label options
-- API access for custom implementations
-
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -43,7 +38,7 @@ An enterprise-grade marketing automation platform that helps businesses streamli
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/marketing-automation-suite.git
+git clone https://github.com/Oterochris/marketing-automation-suite.git
 
 # Install dependencies
 pip install -r requirements.txt
@@ -52,47 +47,6 @@ pip install -r requirements.txt
 cp .env.example .env
 # Edit .env with your API keys and configuration
 ```
-
-### Quick Start
-```python
-from marketing_suite import SocialMediaManager
-
-# Initialize the manager
-sm_manager = SocialMediaManager(config_path='config.yml')
-
-# Schedule a post
-sm_manager.schedule_post(
-    content="Check out our latest feature!",
-    platforms=['twitter', 'linkedin'],
-    schedule_time="2024-12-10 15:00:00"
-)
-```
-
-## 📊 Performance & Limits
-
-| Feature | Free Tier | Pro Tier | Enterprise Tier |
-|---------|-----------|-----------|-----------------|
-| Posts/day | 5 | 50 | Unlimited |
-| Accounts | 2 | 10 | Unlimited |
-| Analytics | Basic | Advanced | Custom |
-| Support | Community | Priority | Dedicated |
-
-## 🔒 Security & Compliance
-
-- OAuth 2.0 implementation for secure authentication
-- GDPR and CCPA compliant data handling
-- Regular security audits
-- Rate limiting to respect platform APIs
-- Data encryption at rest and in transit
-
-## 📝 Documentation
-
-Detailed documentation is available at [docs.marketingautomation.suite](https://docs.marketingautomation.suite)
-
-- [API Reference](docs/API.md)
-- [Configuration Guide](docs/CONFIGURATION.md)
-- [Best Practices](docs/BEST_PRACTICES.md)
-- [Contributing Guide](CONTRIBUTING.md)
 
 ## 💰 Pricing
 
@@ -116,35 +70,12 @@ Detailed documentation is available at [docs.marketingautomation.suite](https://
 - Custom integrations
 - Dedicated support
 - White-label options
-- Custom analytics
 
-## 🤝 Contributing
+## 📱 Contact & Support
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+- Email: support@marketingautomation.suite
+- Documentation: [Wiki](https://github.com/Oterochris/marketing-automation-suite/wiki)
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Thanks to all our [contributors](https://github.com/yourusername/marketing-automation-suite/graphs/contributors)
-- Built with support from the open-source community
-- Special thanks to our enterprise customers for their valuable feedback
-
-## 📱 Contact & Support
-
-- Website: [https://marketingautomation.suite](https://marketingautomation.suite)
-- Email: support@marketingautomation.suite
-- Twitter: [@MarketingAutoSuite](https://twitter.com/MarketingAutoSuite)
-- Documentation: [docs.marketingautomation.suite](https://docs.marketingautomation.suite)
-
----
-
-<p align="center">Made with ❤️ for the marketing community</p>
