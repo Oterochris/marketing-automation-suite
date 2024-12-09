@@ -1,1 +1,1 @@
-# Initialize package
+# Marketing Automation Suite
