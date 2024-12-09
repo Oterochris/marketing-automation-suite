@@ -1,1 +1,1 @@
-# Social media package
+# Social Media Package

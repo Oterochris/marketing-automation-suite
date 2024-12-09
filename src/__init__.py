@@ -1,1 +1,1 @@
-# Marketing Automation Suite
+# Marketing Suite Package
